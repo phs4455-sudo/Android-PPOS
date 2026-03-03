@@ -1,4 +1,4 @@
-package com.example.androidppos
+package com.hd.hdmobilepos.androidppos
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,13 +10,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.androidppos.data.local.PosDatabase
-import com.example.androidppos.data.repository.PosRepository
-import com.example.androidppos.ui.components.PosTopBar
-import com.example.androidppos.ui.foodcourt.FoodCourtViewModel
-import com.example.androidppos.ui.navigation.PosNavGraph
-import com.example.androidppos.ui.table.TableViewModel
-import com.example.androidppos.ui.theme.AndroidPPOSTheme
+import com.hd.hdmobilepos.androidppos.data.local.PosDatabase
+import com.hd.hdmobilepos.androidppos.data.repository.PosRepository
+import com.hd.hdmobilepos.androidppos.ui.components.PosTopBar
+import com.hd.hdmobilepos.androidppos.ui.foodcourt.FoodCourtViewModel
+import com.hd.hdmobilepos.androidppos.ui.navigation.PosNavGraph
+import com.hd.hdmobilepos.androidppos.ui.table.TableViewModel
+import com.hd.hdmobilepos.androidppos.ui.theme.AndroidPPOSTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

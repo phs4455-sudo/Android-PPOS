@@ -23,6 +23,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -151,6 +152,46 @@ fun TableRoute(viewModel: TableViewModel) {
                         colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
                     ) { Text("결제", style = MaterialTheme.typography.headlineSmall) }
                 }
+            }
+
+            Column(modifier = Modifier.width(350.dp).fillMaxHeight().background(Color.White)) {
+                Column(
+                    modifier = Modifier.fillMaxWidth().background(HyGreen).padding(vertical = 18.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(selectedTable?.name ?: "T-1", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                    Text("식사중 ${selectedElapsed}분 | ${selectedTable?.capacity ?: 0}명", color = Color.White.copy(alpha = 0.95f))
+                }
+
+                Column(
+                    modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    state.selectedOrderLines.forEach { line ->
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text(line.nameSnapshot, style = MaterialTheme.typography.titleMedium)
+                            Text("${line.qty}", style = MaterialTheme.typography.titleMedium)
+                        }
+                        Divider()
+                    }
+                }
+
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text("총 주문금액", style = MaterialTheme.typography.titleLarge, color = Color(0xFF666666))
+                    Text(
+                        "${NumberFormat.getNumberInstance(Locale.KOREA).format(selectedTotal)}원",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = Color(0xFFD73737),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                Button(
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp).height(54.dp),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
+                ) { Text("결제", style = MaterialTheme.typography.headlineSmall) }
             }
         }
     }

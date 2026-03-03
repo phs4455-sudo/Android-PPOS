@@ -7,10 +7,6 @@ import com.hd.hdmobilepos.andriodppos.data.local.AreaEntity
 import com.hd.hdmobilepos.andriodppos.data.local.OrderLineSummary
 import com.hd.hdmobilepos.andriodppos.data.local.TableWithOrderSummary
 import com.hd.hdmobilepos.andriodppos.data.repository.PosRepository
-import com.example.androidppos.data.local.AreaEntity
-import com.example.androidppos.data.local.OrderLineSummary
-import com.example.androidppos.data.local.TableWithOrderSummary
-import com.example.androidppos.data.repository.PosRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

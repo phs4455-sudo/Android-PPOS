@@ -1,12 +1,12 @@
-package com.hd.hdmobilepos.andriodppos.ui.foodcourt
+package com.hd.hdmobilepos.androidppos.ui.foodcourt
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.hd.hdmobilepos.andriodppos.data.local.MenuCategoryEntity
-import com.hd.hdmobilepos.andriodppos.data.local.MenuItemEntity
-import com.hd.hdmobilepos.andriodppos.data.repository.PosRepository
-import com.hd.hdmobilepos.andriodppos.domain.CartItem
+import com.hd.hdmobilepos.androidppos.data.local.MenuCategoryEntity
+import com.hd.hdmobilepos.androidppos.data.local.MenuItemEntity
+import com.hd.hdmobilepos.androidppos.data.repository.PosRepository
+import com.hd.hdmobilepos.androidppos.domain.CartItem
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

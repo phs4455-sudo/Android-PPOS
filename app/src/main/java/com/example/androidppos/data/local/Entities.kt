@@ -1,11 +1,11 @@
-package com.hd.hdmobilepos.andriodppos.data.local
+package com.hd.hdmobilepos.androidppos.data.local
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.hd.hdmobilepos.andriodppos.domain.OrderStatus
-import com.hd.hdmobilepos.andriodppos.domain.TableStatus
+import com.hd.hdmobilepos.androidppos.domain.OrderStatus
+import com.hd.hdmobilepos.androidppos.domain.TableStatus
 
 @Entity(tableName = "areas")
 data class AreaEntity(

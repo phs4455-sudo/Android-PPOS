@@ -1,5 +1,7 @@
 package com.hd.hdmobilepos.androidppos
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,12 +15,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.hd.hdmobilepos.androidppos.data.local.PosDatabase
 import com.hd.hdmobilepos.androidppos.data.repository.PosRepository
 import com.hd.hdmobilepos.androidppos.ui.components.PosTopBar
-import com.hd.hdmobilepos.androidppos.ui.foodcourt.FoodCourtViewModel
-import com.hd.hdmobilepos.androidppos.ui.navigation.PosNavGraph
+import com.hd.hdmobilepos.androidppos.ui.table.TableRoute
 import com.hd.hdmobilepos.androidppos.ui.table.TableViewModel
 import com.hd.hdmobilepos.androidppos.ui.theme.AndroidPPOSTheme
 
-class MainActivity : ComponentActivity() {
+class RestaurantActivity : ComponentActivity() {
+    companion object {
+        fun newIntent(context: Context): Intent = Intent(context, RestaurantActivity::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,10 +33,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidPPOSTheme {
                 val tableVm: TableViewModel = viewModel(factory = TableViewModel.Factory(repository))
-                val foodVm: FoodCourtViewModel = viewModel(factory = FoodCourtViewModel.Factory(repository))
                 Scaffold(topBar = { PosTopBar() }) { padding ->
                     Box(modifier = Modifier.fillMaxSize().padding(padding)) {
-                        PosNavGraph(tableViewModel = tableVm, foodCourtViewModel = foodVm)
+                        TableRoute(viewModel = tableVm)
                     }
                 }
             }

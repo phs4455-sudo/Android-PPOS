@@ -1,4 +1,4 @@
-package com.hd.hdmobilepos.andriodppos.ui.navigation
+package com.hd.hdmobilepos.androidppos.ui.navigation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,10 +14,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtRoute
-import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtViewModel
-import com.hd.hdmobilepos.andriodppos.ui.table.TableRoute
-import com.hd.hdmobilepos.andriodppos.ui.table.TableViewModel
+import com.hd.hdmobilepos.androidppos.ui.foodcourt.FoodCourtRoute
+import com.hd.hdmobilepos.androidppos.ui.foodcourt.FoodCourtViewModel
+import com.hd.hdmobilepos.androidppos.ui.table.TableRoute
+import com.hd.hdmobilepos.androidppos.ui.table.TableViewModel
 
 @Composable
 fun PosNavGraph(

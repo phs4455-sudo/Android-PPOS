@@ -1,4 +1,4 @@
-package com.hd.hdmobilepos.andriodppos.data.local
+package com.hd.hdmobilepos.androidppos.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,9 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.hd.hdmobilepos.andriodppos.domain.CartItem
-import com.hd.hdmobilepos.andriodppos.domain.OrderStatus
-import com.hd.hdmobilepos.andriodppos.domain.TableStatus
+import com.hd.hdmobilepos.androidppos.domain.CartItem
+import com.hd.hdmobilepos.androidppos.domain.OrderStatus
+import com.hd.hdmobilepos.androidppos.domain.TableStatus
 import kotlinx.coroutines.flow.Flow
 
 data class TableWithOrderSummary(

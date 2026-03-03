@@ -1,12 +1,12 @@
-package com.hd.hdmobilepos.andriodppos.ui.table
+package com.hd.hdmobilepos.androidppos.ui.table
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.hd.hdmobilepos.andriodppos.data.local.AreaEntity
-import com.hd.hdmobilepos.andriodppos.data.local.OrderLineSummary
-import com.hd.hdmobilepos.andriodppos.data.local.TableWithOrderSummary
-import com.hd.hdmobilepos.andriodppos.data.repository.PosRepository
+import com.hd.hdmobilepos.androidppos.data.local.AreaEntity
+import com.hd.hdmobilepos.androidppos.data.local.OrderLineSummary
+import com.hd.hdmobilepos.androidppos.data.local.TableWithOrderSummary
+import com.hd.hdmobilepos.androidppos.data.repository.PosRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

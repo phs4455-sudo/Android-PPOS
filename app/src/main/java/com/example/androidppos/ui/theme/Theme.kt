@@ -1,4 +1,4 @@
-package com.hd.hdmobilepos.andriodppos.ui.theme
+package com.hd.hdmobilepos.androidppos.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

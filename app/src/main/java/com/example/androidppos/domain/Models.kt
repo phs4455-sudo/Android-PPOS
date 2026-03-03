@@ -1,4 +1,4 @@
-package com.hd.hdmobilepos.andriodppos.domain
+package com.hd.hdmobilepos.androidppos.domain
 
 enum class TableStatus { EMPTY, OCCUPIED, BILLING, DISABLED }
 enum class OrderStatus { CREATED, SENT, PAID, VOID }

@@ -1,6 +1,5 @@
-package com.hd.hdmobilepos.andriodppos.ui.table
+package com.hd.hdmobilepos.androidppos.ui.table
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.hd.hdmobilepos.andriodppos.domain.TableStatus
+import com.hd.hdmobilepos.androidppos.domain.TableStatus
 import java.text.NumberFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit

@@ -1,15 +1,15 @@
-package com.hd.hdmobilepos.andriodppos.data.repository
+package com.hd.hdmobilepos.androidppos.data.repository
 
 import android.util.Log
-import com.hd.hdmobilepos.andriodppos.data.local.AreaEntity
-import com.hd.hdmobilepos.andriodppos.data.local.MenuCategoryEntity
-import com.hd.hdmobilepos.andriodppos.data.local.MenuItemEntity
-import com.hd.hdmobilepos.andriodppos.data.local.OrderLineSummary
-import com.hd.hdmobilepos.andriodppos.data.local.PosDao
-import com.hd.hdmobilepos.andriodppos.data.local.TableEntity
-import com.hd.hdmobilepos.andriodppos.data.local.TableWithOrderSummary
-import com.hd.hdmobilepos.andriodppos.domain.CartItem
-import com.hd.hdmobilepos.andriodppos.domain.TableStatus
+import com.hd.hdmobilepos.androidppos.data.local.AreaEntity
+import com.hd.hdmobilepos.androidppos.data.local.MenuCategoryEntity
+import com.hd.hdmobilepos.androidppos.data.local.MenuItemEntity
+import com.hd.hdmobilepos.androidppos.data.local.OrderLineSummary
+import com.hd.hdmobilepos.androidppos.data.local.PosDao
+import com.hd.hdmobilepos.androidppos.data.local.TableEntity
+import com.hd.hdmobilepos.androidppos.data.local.TableWithOrderSummary
+import com.hd.hdmobilepos.androidppos.domain.CartItem
+import com.hd.hdmobilepos.androidppos.domain.TableStatus
 import kotlinx.coroutines.flow.Flow
 
 interface ReceiptDriver {

@@ -1,4 +1,4 @@
-package com.hd.hdmobilepos.andriodppos.ui.components
+package com.hd.hdmobilepos.androidppos.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

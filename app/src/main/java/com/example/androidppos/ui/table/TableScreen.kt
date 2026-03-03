@@ -68,89 +68,57 @@ fun TableRoute(viewModel: TableViewModel) {
         }
 
         Row(modifier = Modifier.fillMaxSize()) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(4),
-                modifier = Modifier.weight(1f).fillMaxHeight().padding(20.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(state.tables) { table ->
-                    val selected = table.id == state.selectedTableId
-                    val elapsed = table.createdAt?.let { TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - it) } ?: 0
-                    val amountText = NumberFormat.getNumberInstance(Locale.KOREA).format(table.totalAmount ?: 0)
-                    val cardColor = when (table.status) {
-                        TableStatus.OCCUPIED -> HyGreen
-                        TableStatus.BILLING -> HyBeige
-                        TableStatus.DISABLED -> Color(0xFFD7D7D7)
-                        TableStatus.EMPTY -> Color.White
-                    }
-                    val textColor = if (table.status == TableStatus.EMPTY) Color(0xFF333333) else Color.White
-                    Card(
-                        modifier = Modifier.fillMaxWidth().height(170.dp).clickable { viewModel.onAction(TableUiAction.SelectTable(table.id)) },
-                        shape = RoundedCornerShape(14.dp),
-                        colors = CardDefaults.cardColors(containerColor = cardColor),
-                        elevation = CardDefaults.cardElevation(defaultElevation = if (selected) 8.dp else 2.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.fillMaxSize().padding(14.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+            Box(modifier = Modifier.weight(1f).fillMaxHeight().padding(20.dp)) {
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(150.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(state.tables) { table ->
+                        val selected = table.id == state.selectedTableId
+                        val elapsed = table.createdAt?.let { TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - it) } ?: 0
+                        val amountText = NumberFormat.getNumberInstance(Locale.KOREA).format(table.totalAmount ?: 0)
+                        val cardColor = when (table.status) {
+                            TableStatus.OCCUPIED -> HyGreen
+                            TableStatus.BILLING -> HyBeige
+                            TableStatus.DISABLED -> Color(0xFFD7D7D7)
+                            TableStatus.EMPTY -> Color.White
+                        }
+                        val textColor = if (table.status == TableStatus.EMPTY) Color(0xFF333333) else Color.White
+                        Card(
+                            modifier = Modifier.fillMaxWidth().height(126.dp).clickable { viewModel.onAction(TableUiAction.SelectTable(table.id)) },
+                            shape = RoundedCornerShape(12.dp),
+                            colors = CardDefaults.cardColors(containerColor = cardColor),
+                            elevation = CardDefaults.cardElevation(defaultElevation = if (selected) 8.dp else 2.dp)
                         ) {
-                            Text(table.name, color = textColor, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                            Text("${amountText}원", color = textColor, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                            Text("${elapsed}분 · ${table.capacity}명", color = textColor.copy(alpha = 0.9f))
+                            Column(
+                                modifier = Modifier.fillMaxSize().padding(10.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(table.name, color = textColor, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                                Text("${amountText}원", color = textColor, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                                Text("${elapsed}분 · ${table.capacity}명", color = textColor.copy(alpha = 0.9f), style = MaterialTheme.typography.bodySmall)
+                            }
                         }
                     }
                 }
             }
 
-            Column(modifier = Modifier.width(360.dp).fillMaxHeight().background(Color.White)) {
+            Column(modifier = Modifier.width(350.dp).fillMaxHeight().background(Color.White)) {
                 Column(
-                    modifier = Modifier.fillMaxWidth().background(HyGreen).padding(vertical = 20.dp),
+                    modifier = Modifier.fillMaxWidth().background(HyGreen).padding(vertical = 18.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(selectedTable?.name ?: "T-1", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                     Text("식사중 ${selectedElapsed}분 | ${selectedTable?.capacity ?: 0}명", color = Color.White.copy(alpha = 0.95f))
                 }
 
-                Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    state.selectedOrderLines.forEach { line ->
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(line.nameSnapshot, style = MaterialTheme.typography.titleMedium)
-                            Text("${line.qty}", style = MaterialTheme.typography.titleMedium)
-                        }
-                        Divider()
-                    }
-                    val textColor = if (table.status == TableStatus.EMPTY) Color(0xFF333333) else Color.White
-                    Card(
-                        modifier = Modifier.fillMaxWidth().height(170.dp).clickable { viewModel.onAction(TableUiAction.SelectTable(table.id)) },
-                        shape = RoundedCornerShape(14.dp),
-                        colors = CardDefaults.cardColors(containerColor = cardColor),
-                        elevation = CardDefaults.cardElevation(defaultElevation = if (selected) 8.dp else 2.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.fillMaxSize().padding(14.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(table.name, color = textColor, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                            Text("${amountText}원", color = textColor, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                            Text("${elapsed}분 · ${table.capacity}명", color = textColor.copy(alpha = 0.9f))
-                        }
-                    }
-                }
-            }
-
-            Column(modifier = Modifier.width(360.dp).fillMaxHeight().background(Color.White)) {
                 Column(
-                    modifier = Modifier.fillMaxWidth().background(HyGreen).padding(vertical = 20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(selectedTable?.name ?: "T-1", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-                    Text("식사중 ${selectedElapsed}분 | ${selectedTable?.capacity ?: 0}명", color = Color.White.copy(alpha = 0.95f))
-                }
-
-                Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     state.selectedOrderLines.forEach { line ->
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(line.nameSnapshot, style = MaterialTheme.typography.titleMedium)
@@ -160,105 +128,14 @@ fun TableRoute(viewModel: TableViewModel) {
                     }
                 }
 
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(onClick = {
-                        val from = state.selectedTableId ?: return@Button
-                        val to = state.tables.firstOrNull { it.id != from }?.id ?: return@Button
-                        viewModel.onAction(TableUiAction.MoveOrder(from, to))
-                    }, modifier = Modifier.weight(1f)) { Text("이동") }
-                    Button(onClick = {
-                        val source = state.selectedTableId ?: return@Button
-                        val target = state.tables.firstOrNull { it.id != source && it.status == TableStatus.OCCUPIED }?.id ?: return@Button
-                        viewModel.onAction(TableUiAction.MergeTables(source, target))
-                    }, modifier = Modifier.weight(1f)) { Text("합석") }
-                }
-
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text("총 주문금액", style = MaterialTheme.typography.titleLarge, color = Color(0xFF666666))
-                    Text("${NumberFormat.getNumberInstance(Locale.KOREA).format(selectedTotal)}원", style = MaterialTheme.typography.headlineSmall, color = Color(0xFFD73737), fontWeight = FontWeight.Bold)
-                }
-
-                Button(
-                    onClick = {},
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp).height(54.dp),
-                    shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
-                ) { Text("결제", style = MaterialTheme.typography.headlineSmall) }
-            }
-
-            val selectedTable = state.tables.firstOrNull { it.id == state.selectedTableId }
-            val elapsed = selectedTable?.createdAt?.let { TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - it) } ?: 0
-            val total = state.selectedOrderLines.sumOf { it.priceSnapshot * it.qty }
-            val totalText = NumberFormat.getNumberInstance(Locale.KOREA).format(total)
-
-            Column(modifier = Modifier.weight(1f).fillMaxHeight().background(Color.White)) {
-                Surface(color = HyGreen, modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(selectedTable?.name ?: "T-1", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-                        Text("식사중 ${elapsed}분 | ${selectedTable?.capacity ?: 0}명", color = Color.White.copy(alpha = 0.9f))
-                    }
-                }
-
-                Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    state.selectedOrderLines.forEach { line ->
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(line.nameSnapshot, style = MaterialTheme.typography.titleMedium)
-                            Text("${line.qty}", style = MaterialTheme.typography.titleMedium)
-                        }
-                    }
-                }
-
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(
-                        onClick = {
-                            val from = state.selectedTableId ?: return@Button
-                            val to = state.tables.firstOrNull { it.id != from }?.id ?: return@Button
-                            viewModel.onAction(TableUiAction.MoveOrder(from, to))
-                        },
-                        modifier = Modifier.weight(1f)
-                    ) { Text("이동") }
-                    Button(
-                        onClick = {
-                            val source = state.selectedTableId ?: return@Button
-                            val target = state.tables.firstOrNull { it.id != source && it.status == TableStatus.OCCUPIED }?.id ?: return@Button
-                            viewModel.onAction(TableUiAction.MergeTables(source, target))
-                        },
-                        modifier = Modifier.weight(1f)
-                    ) { Text("합석") }
-                }
-
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("총 주문금액", style = MaterialTheme.typography.titleLarge, color = Color(0xFF666666))
-                    Text("${totalText}원", style = MaterialTheme.typography.headlineMedium, color = Color(0xFFD73737), fontWeight = FontWeight.Bold)
-                }
-                Button(
-                    onClick = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .height(54.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
-                ) {
-                    Text("결제", style = MaterialTheme.typography.headlineSmall)
-                }
-
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(onClick = {
-                        val from = state.selectedTableId ?: return@Button
-                        val to = state.tables.firstOrNull { it.id != from }?.id ?: return@Button
-                        viewModel.onAction(TableUiAction.MoveOrder(from, to))
-                    }, modifier = Modifier.weight(1f)) { Text("이동") }
-                    Button(onClick = {
-                        val source = state.selectedTableId ?: return@Button
-                        val target = state.tables.firstOrNull { it.id != source && it.status == TableStatus.OCCUPIED }?.id ?: return@Button
-                        viewModel.onAction(TableUiAction.MergeTables(source, target))
-                    }, modifier = Modifier.weight(1f)) { Text("합석") }
-                }
-
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("총 주문금액", style = MaterialTheme.typography.titleLarge, color = Color(0xFF666666))
-                    Text("${NumberFormat.getNumberInstance(Locale.KOREA).format(selectedTotal)}원", style = MaterialTheme.typography.headlineSmall, color = Color(0xFFD73737), fontWeight = FontWeight.Bold)
+                    Text(
+                        "${NumberFormat.getNumberInstance(Locale.KOREA).format(selectedTotal)}원",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = Color(0xFFD73737),
+                        fontWeight = FontWeight.Bold
+                    )
                 }
 
                 Button(

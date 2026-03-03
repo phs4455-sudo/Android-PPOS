@@ -22,6 +22,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -146,6 +147,64 @@ fun TableRoute(viewModel: TableViewModel) {
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
                 ) { Text("결제", style = MaterialTheme.typography.headlineSmall) }
+            }
+
+            val selectedTable = state.tables.firstOrNull { it.id == state.selectedTableId }
+            val elapsed = selectedTable?.createdAt?.let { TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - it) } ?: 0
+            val total = state.selectedOrderLines.sumOf { it.priceSnapshot * it.qty }
+            val totalText = NumberFormat.getNumberInstance(Locale.KOREA).format(total)
+
+            Column(modifier = Modifier.weight(1f).fillMaxHeight().background(Color.White)) {
+                Surface(color = HyGreen, modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(selectedTable?.name ?: "T-1", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                        Text("식사중 ${elapsed}분 | ${selectedTable?.capacity ?: 0}명", color = Color.White.copy(alpha = 0.9f))
+                    }
+                }
+
+                Column(modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    state.selectedOrderLines.forEach { line ->
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text(line.nameSnapshot, style = MaterialTheme.typography.titleMedium)
+                            Text("${line.qty}", style = MaterialTheme.typography.titleMedium)
+                        }
+                    }
+                }
+
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button(
+                        onClick = {
+                            val from = state.selectedTableId ?: return@Button
+                            val to = state.tables.firstOrNull { it.id != from }?.id ?: return@Button
+                            viewModel.onAction(TableUiAction.MoveOrder(from, to))
+                        },
+                        modifier = Modifier.weight(1f)
+                    ) { Text("이동") }
+                    Button(
+                        onClick = {
+                            val source = state.selectedTableId ?: return@Button
+                            val target = state.tables.firstOrNull { it.id != source && it.status == TableStatus.OCCUPIED }?.id ?: return@Button
+                            viewModel.onAction(TableUiAction.MergeTables(source, target))
+                        },
+                        modifier = Modifier.weight(1f)
+                    ) { Text("합석") }
+                }
+
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text("총 주문금액", style = MaterialTheme.typography.titleLarge, color = Color(0xFF666666))
+                    Text("${totalText}원", style = MaterialTheme.typography.headlineMedium, color = Color(0xFFD73737), fontWeight = FontWeight.Bold)
+                }
+                Button(
+                    onClick = {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .height(54.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = HyBeige)
+                ) {
+                    Text("결제", style = MaterialTheme.typography.headlineSmall)
+                }
             }
         }
     }

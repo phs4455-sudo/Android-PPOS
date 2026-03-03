@@ -24,10 +24,7 @@ fun PosTopBar() {
     val now = LocalDateTime.now()
     TopAppBar(
         title = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(
                     text = "THE HYUNDAI",
                     style = MaterialTheme.typography.headlineSmall,
@@ -36,11 +33,11 @@ fun PosTopBar() {
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Column {
-                        Text(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd (E)")), style = MaterialTheme.typography.labelMedium)
+                        Text(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd (E)")), style = MaterialTheme.typography.bodySmall)
                         Text(now.format(DateTimeFormatter.ofPattern("HH:mm:ss")), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                     }
-                    TopBadge(text = "포스 : 5556")
-                    TopBadge(text = "거래 : 0014")
+                    TopBadge("포스 : 5556")
+                    TopBadge("거래 : 0014")
                 }
             }
         },
@@ -57,9 +54,9 @@ fun PosTopBar() {
 private fun TopBadge(text: String) {
     Text(
         text = text,
+        style = MaterialTheme.typography.labelMedium,
         modifier = Modifier
-            .background(color = Color(0xFFEAEAEA), shape = RoundedCornerShape(4.dp))
-            .padding(horizontal = 10.dp, vertical = 8.dp),
-        style = MaterialTheme.typography.labelMedium
+            .background(Color(0xFFEAEAEA), RoundedCornerShape(4.dp))
+            .padding(horizontal = 10.dp, vertical = 8.dp)
     )
 }

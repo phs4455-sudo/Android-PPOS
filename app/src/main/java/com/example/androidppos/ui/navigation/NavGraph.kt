@@ -1,4 +1,4 @@
-package com.example.androidppos.ui.navigation
+package com.hd.hdmobilepos.andriodppos.ui.navigation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +14,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtRoute
+import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtViewModel
+import com.hd.hdmobilepos.andriodppos.ui.table.TableRoute
+import com.hd.hdmobilepos.andriodppos.ui.table.TableViewModel
 import com.example.androidppos.ui.foodcourt.FoodCourtRoute
 import com.example.androidppos.ui.foodcourt.FoodCourtViewModel
 import com.example.androidppos.ui.table.TableRoute

@@ -1,8 +1,12 @@
-package com.example.androidppos.ui.table
+package com.hd.hdmobilepos.andriodppos.ui.table
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.hd.hdmobilepos.andriodppos.data.local.AreaEntity
+import com.hd.hdmobilepos.andriodppos.data.local.OrderLineSummary
+import com.hd.hdmobilepos.andriodppos.data.local.TableWithOrderSummary
+import com.hd.hdmobilepos.andriodppos.data.repository.PosRepository
 import com.example.androidppos.data.local.AreaEntity
 import com.example.androidppos.data.local.OrderLineSummary
 import com.example.androidppos.data.local.TableWithOrderSummary

@@ -1,4 +1,4 @@
-package com.example.androidppos.ui.table
+package com.hd.hdmobilepos.andriodppos.ui.table
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -22,7 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.androidppos.domain.TableStatus
+import com.hd.hdmobilepos.andriodppos.domain.TableStatus
 import java.util.concurrent.TimeUnit
 
 @Composable

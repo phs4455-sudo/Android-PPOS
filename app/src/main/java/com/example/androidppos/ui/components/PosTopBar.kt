@@ -1,4 +1,4 @@
-package com.example.androidppos.ui.components
+package com.hd.hdmobilepos.andriodppos.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

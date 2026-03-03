@@ -1,4 +1,4 @@
-package com.example.androidppos.ui.foodcourt
+package com.hd.hdmobilepos.andriodppos.ui.foodcourt
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package com.example.androidppos.data.local
+package com.hd.hdmobilepos.andriodppos.data.local
 
 import android.content.Context
 import androidx.room.Database
@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import com.example.androidppos.domain.OrderStatus
-import com.example.androidppos.domain.TableStatus
+import com.hd.hdmobilepos.andriodppos.domain.OrderStatus
+import com.hd.hdmobilepos.andriodppos.domain.TableStatus
 
 @Database(
     entities = [

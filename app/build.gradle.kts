@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.androidppos"
+    namespace = "com.hd.hdmobilepos.andriodppos"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.androidppos"
+        applicationId = "com.hd.hdmobilepos.andriodppos"
         minSdk = 26
         targetSdk = 26
         versionCode = 1

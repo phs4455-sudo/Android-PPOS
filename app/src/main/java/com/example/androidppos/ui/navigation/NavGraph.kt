@@ -18,10 +18,6 @@ import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtRoute
 import com.hd.hdmobilepos.andriodppos.ui.foodcourt.FoodCourtViewModel
 import com.hd.hdmobilepos.andriodppos.ui.table.TableRoute
 import com.hd.hdmobilepos.andriodppos.ui.table.TableViewModel
-import com.example.androidppos.ui.foodcourt.FoodCourtRoute
-import com.example.androidppos.ui.foodcourt.FoodCourtViewModel
-import com.example.androidppos.ui.table.TableRoute
-import com.example.androidppos.ui.table.TableViewModel
 
 @Composable
 fun PosNavGraph(

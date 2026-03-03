@@ -10,15 +10,6 @@ import com.hd.hdmobilepos.andriodppos.data.local.TableEntity
 import com.hd.hdmobilepos.andriodppos.data.local.TableWithOrderSummary
 import com.hd.hdmobilepos.andriodppos.domain.CartItem
 import com.hd.hdmobilepos.andriodppos.domain.TableStatus
-import com.example.androidppos.data.local.AreaEntity
-import com.example.androidppos.data.local.MenuCategoryEntity
-import com.example.androidppos.data.local.MenuItemEntity
-import com.example.androidppos.data.local.OrderLineSummary
-import com.example.androidppos.data.local.PosDao
-import com.example.androidppos.data.local.TableEntity
-import com.example.androidppos.data.local.TableWithOrderSummary
-import com.example.androidppos.domain.CartItem
-import com.example.androidppos.domain.TableStatus
 import kotlinx.coroutines.flow.Flow
 
 interface ReceiptDriver {
